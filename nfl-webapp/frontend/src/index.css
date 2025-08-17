@@ -1,0 +1,15 @@
+:root{
+  --bg: lch(98% 0 0);
+  --fg: lch(20% 10 260);
+  --accent: lch(60% 60 40);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg: lch(10% 8 260); --fg: lch(92% 5 260); --accent: lch(70% 45 40); }
+}
+html,body,#root{ height:100% }
+body{ margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+main{ max-width:720px; margin:3rem auto; padding:1rem }
+label{ display:block; margin:.5rem 0 }
+input{ padding:.5rem; margin-left:.5rem }
+button{ padding:.6rem 1rem; border:1px solid var(--fg); background:transparent; border-radius:.5rem }
+pre{ background:rgba(0,0,0,.05); padding:1rem; border-radius:.5rem; overflow:auto }

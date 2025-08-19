@@ -12,8 +12,11 @@ def fetch_scoreboard(date_str: str) -> pd.DataFrame:
     Returns a DataFrame with columns: date, home_team, away_team, home_score, away_score.
     """
     url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
-    params = {"dates": date_str}
+    params = {"dates": date_str.replace("-", "")}  # ESPN expects YYYYMMDD
     resp = requests.get(url, params=params, headers={"User-Agent": "Mozilla/5.0"})
+    print("Request URL:", resp.url)
+    if not resp.ok:
+        print("Response text:", resp.text)
     resp.raise_for_status()
     data = resp.json()
 

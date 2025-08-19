@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Annotated
+from enum import Enum
 
 
 # Define constrained types
@@ -10,14 +11,13 @@ WinProbType = Annotated[float, Field(ge=0, le=1, description="Home win probabili
 # --- Pydantic DTOs (data transfer objects) ---
 class Features(BaseModel):
     """Explicitly define the features our model expects for clarity and validation."""
-    home_offense: float = Field(description="Home team offensive rating")
-    away_offense: float = Field(description="Away team offensive rating")
-    
-    # Uncomment when ready to add to front end
-    # home_defense: float = Field(description="Home team defensive rating")
-    # away_defense: float = Field(description="Away team defensive rating") 
-    
-    
+    home_offense: float = Field(description="Home team offensive rating")   # Offense
+    away_offense: float = Field(description="Away team offensive rating")   # Offense
+
+    home_defense: float = Field(description="Home team defensive rating")   # Defense
+    away_defense: float = Field(description="Away team defensive rating")   # Defense
+
+
 class PredictRequest(BaseModel):
     """Contract: What the frontend sends. Keep it small and explicit for teaching."""
     home_team: str = Field(min_length=2, description="Home team code, e.g., 'KC'")

@@ -30,8 +30,11 @@ export function buildPredictRequest(form) {
     const season = clamp(Number(form.season ?? 2024), 2003, 2025);
 
     // Feature bag: keep names stable so the server heuristic sees what it expects.
-    const homeOff = Number(form.homeOff ?? 0);
-    const awayOff = Number(form.awayOff ?? 0);
+    const home_off = Number(form.homeOff ?? 0);
+    const away_off = Number(form.awayOff ?? 0);
+
+    const home_def = Number(form.homeDef ?? 0);
+    const away_def = Number(form.awayDef ?? 0);
 
     // Lightweight client-side guardrails
     if (home.length < 2) throw new Error("home_team must be 2+ chars (e.g., 'KC').");
@@ -43,8 +46,10 @@ export function buildPredictRequest(form) {
         week,
         season,
         features: {
-            home_offense: homeOff,
-            away_offense: awayOff
+            home_offense: home_off,
+            away_offense: away_off,
+            home_defense: home_def,
+            away_defense: away_def
         }
     };
 }

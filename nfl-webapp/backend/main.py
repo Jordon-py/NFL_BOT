@@ -7,12 +7,17 @@ FastAPI backend (no Docker). Teaching goals:
 
 Run:  uvicorn main:app --reload --port 8000
 """
+
 from models.pydantic_models import PredictRequest, PredictResponse, Prediction
 from fastapi import FastAPI, HTTPException
 
-
+# ==============================
 # --- App init ---
-app = FastAPI(title="NFL Backend", version="0.1.0")
+# ==============================
+app = FastAPI(
+    title="NFL Backend",
+    version="0.1.0"
+)
 
 # --- Routes ---
 @app.get("/api/health")
